@@ -34,7 +34,7 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await db.loginUser(username, password);
-    console.log(`user: ${user}`);
+    console.log(`user: ${JSON.stringify(user, null, 2)}`);
     if (user.success) {
         req.session.user = user.user;
         res.redirect('/');
