@@ -1,1 +1,99 @@
-document.addEventListener("DOMContentLoaded",(function(){const e=document.getElementById("registerBtn"),t=document.getElementById("loginBtn");function n(e,t){fetch(e,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(t)}).then((t=>{if(console.log(t),200===t.status)return t.json().then((t=>{Swal.fire({icon:t.success?"success":"error",title:t.success?"Success!":"Oops...",text:t.message,confirmButtonText:"OK"}).then((()=>{"/register"===e&&t.success?window.location.href="/login":"/login"===e&&t.success&&(window.location.href="/")}))}))})).catch((e=>console.error("Error:",e)))}function r(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}e&&e.addEventListener("click",(e=>{e.preventDefault();const t=document.getElementById("name").value.trim(),s=document.getElementById("email").value.trim(),o=document.getElementById("confirmEmail").value.trim(),a=document.getElementById("password").value.trim();let i=[];t||i.push("Full Name is required."),r(s)||i.push("Enter a valid email address."),s!==o&&i.push("Email and Confirm Email are not same."),a.length<6&&i.push("Password must be at least 6 characters long."),i.length>0?Swal.fire({icon:"error",title:"Error",html:i.join("<br>"),confirmButtonText:"OK"}):n("/register",{username:s,password:a})})),t&&t.addEventListener("click",(e=>{e.preventDefault();const t=document.getElementById("email").value.trim(),s=document.getElementById("password").value.trim();t&&s?r(t)?s.length<6?Swal.fire({icon:"error",title:"Weak Password",text:"Password must be at least 6 characters long."}):n("/login",{username:t,password:s}):Swal.fire({icon:"error",title:"Invalid Email",text:"Please enter a valid email address."}):Swal.fire({icon:"error",title:"Missing Fields",text:"Please fill in both email and password."})}))}));
+document.addEventListener("DOMContentLoaded", function () {
+        const registerButton = document.getElementById("registerBtn");
+        const loginButton = document.getElementById("loginBtn");
+        function sendRequest(endpoint, data) {
+            fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(data)
+            })
+                .then(response => {
+                    console.log(response);
+                    if (response.status === 200) {
+                        return response.json().then(data => {
+                            Swal.fire({
+                                icon: data.success ? "success" : "error",
+                                title: data.success ? "Success!" : "Oops...",
+                                text: data.message,
+                                confirmButtonText: "OK"
+                            }).then(() => {
+                                if (endpoint === "/register" && data.success) {
+                                    window.location.href = "/login";
+                                } else if (endpoint === "/login" && data.success) {
+                                    window.location.href = "/";
+                                }
+                            });
+                        })
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+        if (registerButton) {
+            registerButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const confirmEmail = document.getElementById("confirmEmail").value.trim();
+                const password = document.getElementById("password").value.trim();
+                let errors = [];
+                if (!name) {
+                    errors.push("Full Name is required.");
+                }
+                if (!validateEmail(email)) {
+                    errors.push("Enter a valid email address.");
+                }
+                if (email !== confirmEmail) {
+                    errors.push("Email and Confirm Email are not same.");
+                }
+                if (password.length < 6) {
+                    errors.push("Password must be at least 6 characters long.");
+                }
+                if (errors.length > 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        html: errors.join('<br>'),
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    sendRequest("/register", { username: email, password });
+                }
+            });
+        }
+        if (loginButton) {
+            loginButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                const username = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value.trim();
+                if (!username || !password) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Missing Fields",
+                        text: "Please fill in both email and password.",
+                    });
+                    return;
+                }
+                if (!validateEmail(username)) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Invalid Email",
+                        text: "Please enter a valid email address.",
+                    });
+                    return;
+                }
+                if (password.length < 6) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Weak Password",
+                        text: "Password must be at least 6 characters long.",
+                    });
+                    return;
+                }
+                sendRequest("/login", { username, password });
+            });
+        }
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+    });
