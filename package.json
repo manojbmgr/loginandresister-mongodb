@@ -10,5 +10,24 @@
   },
   "scripts": {
     "start": "node index.js"
-  }
+  },
+  "name": "loginandresister-mongodb",
+  "version": "1.0.0",
+  "description": "A simple web application for user registration and login functionality.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manojbmgr/loginandresister-mongodb.git"
+  },
+  "keywords": [
+    "loginresiter",
+    "ejs",
+    "mongodb"
+  ],
+  "author": "manojbmgr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manojbmgr/loginandresister-mongodb/issues"
+  },
+  "homepage": "https://github.com/manojbmgr/loginandresister-mongodb#readme"
 }
