@@ -13,20 +13,17 @@
             })
                 .then(response => {
                     console.log(response);
-                    if (response.status === 200) {
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                    }
+                    else if (response.status === 200) {
                         return response.json().then(data => {
                             Swal.fire({
                                 icon: data.success ? "success" : "error",
                                 title: data.success ? "Success!" : "Oops...",
                                 text: data.message,
                                 confirmButtonText: "OK"
-                            }).then(() => {
-                                if (endpoint === "/register" && data.success) {
-                                    window.location.href = "/login";
-                                } else if (endpoint === "/login" && data.success) {
-                                    window.location.href = "/";
-                                }
-                            });
+                            })
                         })
                     }
                 })
