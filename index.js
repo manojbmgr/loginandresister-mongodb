@@ -13,7 +13,7 @@ app.use(session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { secure: true }
 }));
 function isAuthenticated(req, res, next) {
     if (req.session.user) {
