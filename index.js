@@ -1,5 +1,6 @@
 require('dotenv').config();
 const db = require('./modules/db');
+const MongoStore = require("connect-mongo");
 const express = require('express');
 const app = express();
 const session = require('express-session');
@@ -10,10 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true },
+  store: MongoStore.create({ mongoUrl: process.env.URI })
 }));
 function isAuthenticated(req, res, next) {
     if (req.session.user) {
