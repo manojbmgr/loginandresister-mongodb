@@ -12,11 +12,11 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.set('trust proxy', 1);
 app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true },
-  store: MongoStore.create({ mongoUrl: process.env.URI })
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+    store: MongoStore.create({ mongoUrl: process.env.URI })
 }));
 function isAuthenticated(req, res, next) {
     if (req.session.user) {
@@ -35,12 +35,7 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await db.loginUser(username, password);
-    if (user.success) {
-        req.session.user = user.user;
-        res.redirect('/');
-    } else {
-        res.json(user);
-    }
+    res.json(user);
 });
 app.get('/register', (req, res) => {
     res.render('register');
