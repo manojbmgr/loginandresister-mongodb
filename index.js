@@ -1,4 +1,4 @@
-require('dotenv').config();
+//require('dotenv').config();
 const db = require('./modules/db');
 const MongoStore = require("connect-mongo");
 const express = require('express');
