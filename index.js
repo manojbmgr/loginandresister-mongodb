@@ -35,7 +35,7 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await db.loginUser(username, password);
-    console.log(usr);
+    console.log(user);
     res.redirect('/');
 });
 app.get('/register', (req, res) => {
