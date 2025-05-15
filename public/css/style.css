@@ -12,6 +12,9 @@ header {
 header p {
     font-size: 32px;
 }
+.flex-col p{
+    line-height: 40px;
+}
 .container {
     display: flex;
     align-items: center;
