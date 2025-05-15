@@ -1,0 +1,81 @@
+<footer>
+    <p>&copy 2025 Login and Resister</p>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const registerButton = document.getElementById("registerBtn");
+        const loginButton = document.getElementById("loginBtn");
+        function sendRequest(endpoint, data) {
+            fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(data)
+            })
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                    } else {
+                        return response.json().then(data => {
+                            Swal.fire({
+                                icon: data.success ? "success" : "error",
+                                title: data.success ? "Success!" : "Oops...",
+                                text: data.message,
+                                confirmButtonText: "OK"
+                            }).then(() => {
+                                if (data.success) {
+                                    window.location.href = "/login";
+                                }
+                            });
+                        })
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+        if (registerButton) {
+            registerButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const confirmEmail = document.getElementById("confirmEmail").value.trim();
+                const password = document.getElementById("password").value.trim();
+                let errors = [];
+                if (!name) {
+                    errors.push("Full Name is required.");
+                }
+                if (!validateEmail(email)) {
+                    errors.push("Enter a valid email address.");
+                }
+                if (email !== confirmEmail) {
+                    errors.push("Email and Confirm Email are not same.");
+                }
+                if (password.length < 6) {
+                    errors.push("Password must be at least 6 characters long.");
+                }
+                if (errors.length > 0) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        html: errors.join('<br>'),
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    sendRequest("/register", { username: email, password });
+                }
+            });
+        }
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+        if (loginButton) {
+            loginButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                const username = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                sendRequest("/login", { username, password });
+            });
+        }
+    });
+</script>
+</body>
+</html>

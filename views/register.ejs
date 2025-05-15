@@ -1,0 +1,20 @@
+<%- include('header') %>
+    <div class="container">
+        <div class="flex-col">
+            <div class="form">
+                <form action="">
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter Your Full Name" required>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+                    <label for="confirmEmail">Confirm Email</label>
+                    <input type="email" name="confirmEmail" id="confirmEmail" placeholder="Conferm Your Email" required>
+                    <label for="password">Enter Your Password</label>
+                    <input type="password" name="password" id="password" placeholder="Your Password" required>
+                    <button type="submit" id="registerBtn">Register</button>
+                </form>
+            </div>
+            <p>Already have an account? Log in <a href='/login' class="action">here</a></p>
+        </div>
+    </div>
+    <%- include('footer') %>

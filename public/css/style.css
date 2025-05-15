@@ -1,0 +1,102 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px;
+    color: white;
+}
+header p {
+    font-size: 32px;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+}
+.flex-col {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    background: #f5f5f5;
+    font-size: 16px;
+}
+label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background: #4facfe;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.action{
+    text-decoration: none;
+    background: purple;
+    margin: 5px;
+    padding: 10px;
+    color: white;
+    border-radius: 50%;
+    border: 1px solid purple;
+    transition: all 0.3s ease;
+}
+.action:hover{
+    background: white;
+    color: purple;
+}
+button:hover {
+    background: #00f2fe;
+}
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+}
+p {
+    text-align: center;
+    font-size: 18px;
+}
+.exit {
+    max-width: 300px;
+    max-width: auto;
+}
+footer {
+    width: 100%;
+    text-align: center;
+}
+@media screen and (max-width: 600px) {
+    .form {
+        width: 90%;
+    }
+}
