@@ -71,8 +71,25 @@
         if (loginButton) {
             loginButton.addEventListener("click", (e) => {
                 e.preventDefault();
-                const username = document.getElementById("email").value;
-                const password = document.getElementById("password").value;
+                const username = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(username)) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Invalid Email",
+                        text: "Please enter a valid email address.",
+                    });
+                    return;
+                }
+                if (password.length < 6) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Weak Password",
+                        text: "Password must be at least 6 characters long.",
+                    });
+                    return;
+                }
                 sendRequest("/login", { username, password });
             });
         }
