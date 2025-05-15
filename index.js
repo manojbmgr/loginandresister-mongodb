@@ -11,7 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.set('trust proxy', 1);
-console.log(`secret: ${process.env.SECRET}`); /// Debugging
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
@@ -36,7 +35,6 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await db.loginUser(username, password);
-    console.log(`user: ${JSON.stringify(user, null, 2)}`);
     if (user.success) {
         req.session.user = user.user;
         res.redirect('/');
@@ -50,7 +48,6 @@ app.get('/register', (req, res) => {
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
     const status = await db.registerUser(username, password);
-    console.log(`status: ${status}`);
     if (status) {
         res.json(status);
     } else {
