@@ -64,17 +64,12 @@
                 }
             });
         }
-        function validateEmail(email) {
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return regex.test(email);
-        }
         if (loginButton) {
             loginButton.addEventListener("click", (e) => {
                 e.preventDefault();
                 const username = document.getElementById("email").value.trim();
                 const password = document.getElementById("password").value.trim();
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(username)) {
+                if (!validateEmail(username)) {
                     Swal.fire({
                         icon: "error",
                         title: "Invalid Email",
@@ -92,6 +87,10 @@
                 }
                 sendRequest("/login", { username, password });
             });
+        }
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
         }
     });
 </script>
