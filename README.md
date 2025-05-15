@@ -17,7 +17,7 @@ A simple web application for user registration and login functionality.
 ## Getting Started
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/assignmentLoginAndRegister.git
+    git clone https://github.com/manojbmgr/loginandresister-mongodb.git
     cd assignmentLoginAndRegister
     ```
 2. **Install dependencies:**
