@@ -30,7 +30,12 @@ app.get('/', isAuthenticated, (req, res) => {
     res.render('app', { user: userInfo });
 })
 app.get('/login', (req, res) => {
+    if(!req.session.user) {
     res.render('login');
+    }
+    else {
+        res.redirect('/');
+    }
 })
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
