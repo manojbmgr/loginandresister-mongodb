@@ -39,7 +39,7 @@ app.post('/login', async (req, res) => {
         req.session.user = user.user;
         res.redirect('/');
     } else {
-        res.status(401).send(user.message);
+        res.json(user);
     }
 });
 app.get('/register', (req, res) => {
@@ -51,7 +51,7 @@ app.post('/register', async (req, res) => {
     if (status) {
         res.json(status);
     } else {
-        res.json(status);
+        res.status(400).json(status);
     }
 });
 app.get('/logout', (req, res) => {
