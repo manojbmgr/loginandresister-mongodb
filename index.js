@@ -36,7 +36,11 @@ app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await db.loginUser(username, password);
     console.log(user);
-    res.redirect('/');
+    if (user.success) {
+        res.redirect('/');
+    } else {
+        res.json(user);
+    }
 });
 app.get('/register', (req, res) => {
     res.render('register');
