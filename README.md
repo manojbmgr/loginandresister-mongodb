@@ -13,7 +13,6 @@ A simple web application for user registration and login functionality.
 - Dotenv
 - MongoDB (or your chosen database)
 - ejs/CSS/JavaScript (Frontend)
-## Live Demo
 ## Getting Started
 1. **Clone the repository:**
     ```bash
@@ -32,6 +31,8 @@ A simple web application for user registration and login functionality.
     ```
 5. **Open in browser:**
     - Visit `http://localhost:3000`
+6. **Live Demo:**
+    - Visit `https://loginandresister-mongodb.onrender.com`
 ## Folder Structure
 ```
 /public         # Static files (CSS, JS)
