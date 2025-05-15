@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-console.log(`secret: ${process.env.secret}`); /// Debugging
+console.log(`secret: ${process.env.SECRET}`); /// Debugging
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
