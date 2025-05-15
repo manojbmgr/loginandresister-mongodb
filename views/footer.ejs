@@ -69,6 +69,14 @@
                 e.preventDefault();
                 const username = document.getElementById("email").value.trim();
                 const password = document.getElementById("password").value.trim();
+                if (!username || !password) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Missing Fields",
+                        text: "Please fill in both email and password.",
+                    });
+                    return;
+                }
                 if (!validateEmail(username)) {
                     Swal.fire({
                         icon: "error",
