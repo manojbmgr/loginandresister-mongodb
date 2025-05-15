@@ -51,7 +51,7 @@ app.post('/register', async (req, res) => {
     if (status) {
         res.json(status);
     } else {
-        res.status(400).json(status);
+        res.json(status);
     }
 });
 app.get('/logout', (req, res) => {
