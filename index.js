@@ -38,7 +38,8 @@ app.post('/login', async (req, res) => {
     console.log(user);
     if (user.success) {
         req.session.user = user.user;
-        res.redirect('/');
+        //res.redirect('/');
+        res.json(user);
     } else {
         res.json(user);
     }

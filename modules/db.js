@@ -37,13 +37,13 @@ async function loginUser(username, password) {
     const user = await collection.findOne({ username });
     if (!user) {
       console.log('User not found.');
-      return { success: false, message: "User not found." };
+      return { success: false, message: "Invalid Credentials" };
     }
     const match = await bcrypt.compare(password, user.password);
     if (match) {
-      return { success: true, user };
+      return { success: true, user, message: "Login Success" };
     } else {
-      return { success: false, message: "Incorrect password" };
+      return { success: false, message: "Invalid Credentials" };
     }
   } catch (err) {
     console.error("Error logging in:", err);
