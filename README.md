@@ -31,10 +31,8 @@ A simple web application for user registration and login functionality.
     ```
 5. **Open in browser:**
     - Visit `http://localhost:3000`
-6. ## Live Demo
-<a href="https://loginandresister-mongodb.onrender.com" style="background-color: yellow; padding: 10px; display: inline-block; border-radius: 5px; text-decoration: none;">
-    Visit the Live Demo
-</a>
+6. **Live Demo:**
+    🔗 [Visit the Live Demo](https://loginandresister-mongodb.onrender.com)
 ## Folder Structure
 ```
 /public         # Static files (CSS, JS)
