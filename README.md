@@ -11,7 +11,7 @@ A simple web application for user registration and login functionality.
 - Express-Session
 - Bycript
 - Dotenv
-- MongoDB (or your chosen database)
+- MongoDB
 - ejs/CSS/JavaScript (Frontend)
 ## Getting Started
 1. **Clone the repository:**
